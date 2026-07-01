@@ -1,6 +1,7 @@
+// src/pages/InterviewSetup.tsx
+
 function InterviewSetup() {
-  return <> 
-  </>;
+  return <></>;
 }
 
 export default InterviewSetup;
