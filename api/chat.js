@@ -21,8 +21,13 @@ export default async function handler(req, res) {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      return res.status(response.status).json({ error: errorText });
+      try {
+        const errorJson = await response.json();
+        return res.status(response.status).json(errorJson);
+      } catch {
+        const errorText = await response.text();
+        return res.status(response.status).json({ error: errorText });
+      }
     }
 
     res.setHeader('Content-Type', 'text/event-stream');
@@ -37,7 +42,7 @@ export default async function handler(req, res) {
       if (done) break;
 
       const chunk = decoder.decode(value, { stream: true });
-      
+
       res.write(chunk);
     }
 
