@@ -21,11 +21,11 @@ export default async function handler(req, res) {
     });
 
     if (!response.ok) {
+      const errorText = await response.text();
       try {
-        const errorJson = await response.json();
+        const errorJson = JSON.parse(errorText);
         return res.status(response.status).json(errorJson);
       } catch {
-        const errorText = await response.text();
         return res.status(response.status).json({ error: errorText });
       }
     }
