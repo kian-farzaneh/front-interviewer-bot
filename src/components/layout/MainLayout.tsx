@@ -6,7 +6,6 @@ import { Sidebar } from "./Sidebar";
 import { Header } from "./Header";
 
 export function MainLayout() {
-  // مدیریت وضعیت تم و سیدبار به این کامپوننت منتقل شد
   const [isDark, setIsDark] = useState<boolean>(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
@@ -28,11 +27,6 @@ export function MainLayout() {
           onClose={() => setIsSidebarOpen(true)}
         />
         <main className="flex-1 overflow-y-auto p-6">
-          {/* 
-            اینجا محتوای مربوط به هر صفحه (مثل LandingPage، InterviewSetup و غیره) 
-            به صورت داینامیک جایگزین می‌شود.
-            ارسال context اجازه می‌دهد صفحات در صورت نیاز به isDark دسترسی داشته باشند.
-          */}
           <Outlet context={{ isDark }} />
         </main>
       </div>
