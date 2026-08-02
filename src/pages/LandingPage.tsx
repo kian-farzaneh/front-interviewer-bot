@@ -3,19 +3,20 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/Button";
 import { Sparkles, Target, Award, Zap } from "lucide-react";
-
-interface LandingPageProps {
+import { useOutletContext } from "react-router-dom";
+interface LayoutContextType {
   isDark: boolean;
 }
 
-export default function LandingPage({ isDark }: LandingPageProps) {
+export default function LandingPage() {
+  const {isDark} = useOutletContext<LayoutContextType>()
   const navigate = useNavigate();
   return (
     <div className="max-w-6xl mx-auto text-center">
       {/* Hero */}
       <div className="space-y-6 pb-20">
         <div
-          className={`inline-flex items-center gap-2  px-4 py-2 rounded-full  ${isDark ? "bg-blue-600/20 text-blue-400" : "bg-blue-50 text-blue-600"}`}
+          className={`inline-flex items-center gap-2  px-4 py-2 rounded-full  ${isDark ? "bg-blue-600/20 text-blue-400" : "bg-amber-300 text-blue-600"}`}
         >
           <Sparkles size={17} />
           <span className="text-sm">AI-Powered Interview Coach</span>
