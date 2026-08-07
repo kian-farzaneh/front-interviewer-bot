@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import InterviewSetup from "./pages/InterviewSetup";
 import { MainLayout } from "./components/layout/MainLayout";
+import InterviewPage from "./pages/InterviewPage";
+import ResultPage from "./pages/ResultPage";
 // import InterviewSession from './pages/InterviewSession';
 // import InterviewResult from './pages/InterviewResult';
 // import HistoryPage from './pages/HistoryPage';
@@ -18,6 +20,8 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<LandingPage />} />
           <Route path="/setup" element={<InterviewSetup />} />
+          <Route path="/interview" element={<InterviewPage />} />
+          <Route path="/result" element={<ResultPage />} />
           {/* <Route path="/session" element={<InterviewSession />} /> */}
           {/* <Route path="/result" element={<InterviewResult />} /> */}
           {/* <Route path="/history" element={<HistoryPage />} /> */}
