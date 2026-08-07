@@ -220,7 +220,7 @@ export default function InterviewPage() {
       </div>
 
       {/* Chat Container */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 no-scrollbar">
         {messages
           .filter((m) => m.role !== 'system')
           .map((msg, index) => (

@@ -26,7 +26,7 @@ export function MainLayout() {
           onDark={() => setIsDark(!isDark)}
           onClose={() => setIsSidebarOpen(true)}
         />
-        <main className="flex-1 overflow-y-auto p-6">
+        <main className="flex-1 overflow-y-auto p-6 no-scrollbar">
           <Outlet context={{ isDark }} />
         </main>
       </div>

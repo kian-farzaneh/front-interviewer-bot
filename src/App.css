@@ -1,1 +1,14 @@
 /* src / App.tsx */
+/* پنهان کردن نوار اسکرول */
+.no-scrollbar {
+  /* مرورگرهای Firefox */
+  scrollbar-width: none;
+  
+  /* مرورگرهای قدیمی IE و Edge */
+  -ms-overflow-style: none;
+}
+
+/* مرورگرهای مبتنی بر WebKit (مثل Chrome, Safari, Edge جدید و Opera) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
