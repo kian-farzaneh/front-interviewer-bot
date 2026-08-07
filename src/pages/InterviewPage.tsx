@@ -213,7 +213,7 @@ export default function InterviewPage() {
         </div>
         <div className="w-1/3 bg-gray-800 h-2.5 rounded-full overflow-hidden">
           <div
-            className="bg-gradient-to-r from-blue-500 to-purple-500 h-full transition-all duration-300"
+            className="bg-linear-to-r from-blue-500 to-purple-500 h-full transition-all duration-300"
             style={{ width: `${progressPercent}%` }}
           />
         </div>

@@ -55,7 +55,7 @@ export default function InterviewSetup() {
   return (
     <div className="max-w-2xl mx-auto p-6 bg-gray-900 border border-gray-800 rounded-2xl text-white space-y-8 my-8">
       <div className="text-center space-y-2">
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+        <h2 className="text-3xl font-bold bg-linear-to-r from-orange-800 to-purple-400 bg-clip-text text-transparent">
           Setup Your AI Interview
         </h2>
         <p className="text-gray-400 text-sm">
