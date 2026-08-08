@@ -25,7 +25,7 @@ export default function ResultPage() {
       <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8 text-center space-y-3 relative overflow-hidden">
         <Award className="w-12 h-12 text-blue-400 mx-auto" />
         <h1 className="text-gray-400 text-lg font-medium">Overall Performance</h1>
-        <p className="text-6xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+        <p className="text-6xl font-extrabold bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
           {report.overallScore}
         </p>
         <p className="text-sm text-gray-300 max-w-xl mx-auto leading-relaxed pt-2">
@@ -84,7 +84,7 @@ export default function ResultPage() {
               </div>
               <div className="w-full bg-gray-800 h-2.5 rounded-full overflow-hidden">
                 <div
-                  className="bg-gradient-to-r from-purple-500 to-blue-500 h-full transition-all duration-500"
+                  className="bg-linear-to-r from-purple-500 to-blue-500 h-full transition-all duration-500"
                   style={{ width: `${Math.min(Math.max(value, 0), 100)}%` }}
                 />
               </div>
