@@ -5,7 +5,7 @@
       "destination": "/api/:match*"
     },
     {
-      "source": "/((?!@vite|@react-refresh|src|node_modules|favicon|.*\\.).*)",
+      "source": "/((?!api/|@|src/|node_modules/|.*\\..*).*)",
       "destination": "/index.html"
     }
   ]
