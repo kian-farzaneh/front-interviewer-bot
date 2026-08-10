@@ -1,1 +1,12 @@
-{}
+{
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "/api/:match*"
+    },
+    {
+      "source": "/((?!@vite|@react-refresh|src|node_modules|favicon|.*\\.).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
