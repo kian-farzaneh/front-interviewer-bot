@@ -7,6 +7,7 @@ import InterviewSetup from "./pages/InterviewSetup";
 import { MainLayout } from "./components/layout/MainLayout";
 import InterviewPage from "./pages/InterviewPage";
 import ResultPage from "./pages/ResultPage";
+import { useLanguageDirection } from "./hooks/useLanguageDirection";
 // import InterviewSession from './pages/InterviewSession';
 // import InterviewResult from './pages/InterviewResult';
 // import HistoryPage from './pages/HistoryPage';
@@ -14,6 +15,7 @@ import ResultPage from "./pages/ResultPage";
 // import SettingsPage from './pages/SettingsPage';
 
 function App() {
+  useLanguageDirection();
   return (
     <BrowserRouter>
       <Routes>

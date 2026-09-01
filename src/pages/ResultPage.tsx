@@ -1,20 +1,24 @@
 // src/pages/ResultPage.tsx
 
-import { useLocation, useNavigate } from 'react-router-dom';
-import type { FinalReport } from '../types/interview';
-import { Button } from '../components/ui/Button';
-import { Award, CheckCircle2, XCircle, BarChart2 } from 'lucide-react';
+import { useLocation, useNavigate } from "react-router-dom";
+import type { FinalReport } from "../types/interview";
+import { Button } from "../components/ui/Button";
+import { Award, CheckCircle2, XCircle, BarChart2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function ResultPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const report = location.state as FinalReport;
+  const { t, i18n } = useTranslation();
 
   if (!report) {
     return (
       <div className="text-center p-12 text-white space-y-4">
         <p className="text-gray-400">No interview result found.</p>
-        <Button onClick={() => navigate('/setup')}>Start New Interview</Button>
+        <Button onClick={() => navigate("/setup")}>
+          {t("result.startNew")}
+        </Button>
       </div>
     );
   }
@@ -24,7 +28,13 @@ export default function ResultPage() {
       {/* Overall Score */}
       <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8 text-center space-y-3 relative overflow-hidden">
         <Award className="w-12 h-12 text-blue-400 mx-auto" />
-        <h1 className="text-gray-400 text-lg font-medium">Overall Performance</h1>
+        <h1
+          className={`text-gray-400 ${
+            i18n.language.startsWith("fa") ? "text-3xl font-bold" : "text-lg  font-medium"
+          }`}
+        >
+          {t("result.overallPerformance")}
+        </h1>
         <p className="text-6xl font-extrabold bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
           {report.overallScore}
         </p>
@@ -39,7 +49,7 @@ export default function ResultPage() {
         <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-4">
           <div className="flex items-center gap-2 text-green-400 font-bold text-lg">
             <CheckCircle2 size={20} />
-            <h3>Strengths</h3>
+            <h3>{t("result.strengths")}</h3>
           </div>
           <ul className="space-y-2.5 text-sm text-gray-300">
             {report.strengths?.map((item, idx) => (
@@ -55,7 +65,7 @@ export default function ResultPage() {
         <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-4">
           <div className="flex items-center gap-2 text-red-400 font-bold text-lg">
             <XCircle size={20} />
-            <h3>Areas for Improvement</h3>
+            <h3>{t("result.weaknesses")}</h3>
           </div>
           <ul className="space-y-2.5 text-sm text-gray-300">
             {report.weaknesses?.map((item, idx) => (
@@ -72,7 +82,7 @@ export default function ResultPage() {
       <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-6">
         <div className="flex items-center gap-2 text-purple-400 font-bold text-lg">
           <BarChart2 size={20} />
-          <h3>Dynamic Skill Breakdown</h3>
+          <h3>{t("result.skillBreakdown")}</h3>
         </div>
 
         <div className="space-y-4">
@@ -93,8 +103,11 @@ export default function ResultPage() {
         </div>
       </div>
 
-      <Button onClick={() => navigate('/setup')} className="w-full py-3.5 text-base cursor-pointer">
-        Start Another Interview
+      <Button
+        onClick={() => navigate("/setup")}
+        className="w-full py-3.5 text-base cursor-pointer"
+      >
+        {t("result.startAnother")}
       </Button>
     </div>
   );

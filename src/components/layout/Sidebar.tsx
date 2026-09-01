@@ -9,14 +9,16 @@ import {
   BarChart3,
   X,
 } from "lucide-react";
+import { useLayoutEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const navItems = [
-  { path: "/", icon: Home, label: "Home" },
-  { path: "/setup", icon: ClipboardList, label: "New Interview" },
-  { path: "/history", icon: History, label: "History" },
-  { path: "/profile", icon: User, label: "Profile" },
-  { path: "/result", icon: BarChart3, label: "Last Result" },
-  { path: "/settings", icon: Settings, label: "Settings" },
+  { path: "/", icon: Home, key: "sidebar.home" },
+  { path: "/setup", icon: ClipboardList, key: "sidebar.newInterview" },
+  { path: "/history", icon: History, key: "sidebar.history" },
+  { path: "/profile", icon: User, key: "sidebar.profile" },
+  { path: "/result", icon: BarChart3, key: "sidebar.lastResult" },
+  { path: "/settings", icon: Settings, key: "sidebar.settings" },
 ];
 
 interface SidebarProps {
@@ -26,6 +28,24 @@ interface SidebarProps {
 }
 
 export function Sidebar({ isDark, isOpen, onClose }: SidebarProps) {
+  const { t, i18n } = useTranslation();
+  const [isTransitionEnabled, setIsTransitionEnabled] = useState(false);
+
+  useLayoutEffect(() => {
+    setIsTransitionEnabled(false);
+
+    const frame = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setIsTransitionEnabled(true);
+      });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [i18n.language]);
+
+  useLayoutEffect(() => {
+    setIsTransitionEnabled(true);
+  }, []);
+
   return (
     <>
       <div
@@ -35,14 +55,26 @@ export function Sidebar({ isDark, isOpen, onClose }: SidebarProps) {
       />
       <aside
         className={`
-        fixed inset-y-0 left-0 w-72 ${isDark ? "bg-gray-900 border-r border-gray-800" : ""} flex flex-col z-50 
-        transition-transform duration-400 ease-in-out
-        ${isOpen ? "translate-x-0" : "-translate-x-full"}
+          fixed inset-y-0 inset-s-0 w-72 ${
+            isDark
+              ? "bg-gray-900 border-e border-gray-800"
+              : "bg-white border-e border-gray-200"
+          } flex flex-col z-50 
+        ${
+          isTransitionEnabled
+            ? "transition-transform duration-400 ease-in-out"
+            : "transition-none"
+        }
+        ${
+          isOpen
+            ? "translate-x-0"
+            : "-translate-x-full rtl:translate-x-full pointer-events-none"
+        }
       `}
       >
         <div className="flex justify-between p-6 border-b border-gray-800">
           <h1 className="text-xl font-bold bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            Kian AI Interview
+            {t("sidebar.title")}
           </h1>
           <button
             onClick={onClose}
@@ -67,7 +99,7 @@ export function Sidebar({ isDark, isOpen, onClose }: SidebarProps) {
               }
             >
               <item.icon size={20} />
-              <span>{item.label}</span>
+              <span>{t(item.key)}</span>
             </NavLink>
           ))}
         </nav>
