@@ -58,7 +58,7 @@ export function Sidebar({ isDark, isOpen, onClose }: SidebarProps) {
           fixed inset-y-0 inset-s-0 w-72 ${
             isDark
               ? "bg-gray-900 border-e border-gray-800"
-              : "bg-white border-e border-gray-200"
+              : "bg-white/75 backdrop-blur-xl border-e border-slate-200/80 shadow-2xl shadow-slate-300/50"
           } flex flex-col z-50 
         ${
           isTransitionEnabled
@@ -73,12 +73,16 @@ export function Sidebar({ isDark, isOpen, onClose }: SidebarProps) {
       `}
       >
         <div className="flex justify-between p-6 border-b border-gray-800">
-          <h1 className="text-xl font-bold bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <h1 className="text-xl font-bold bg-linear-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
             {t("sidebar.title")}
           </h1>
           <button
             onClick={onClose}
-            className="p-2 bg-gray-800/80 cursor-pointer hover:bg-red-500/20 text-gray-400 hover:text-red-400 rounded-full transition-all border border-gray-700 hover:border-red-500/30"
+            className={`p-2 cursor-pointer rounded-full transition-all border ${
+              isDark
+                ? "bg-gray-800/80 hover:bg-red-500/20 text-gray-400 hover:text-red-400 border-gray-700 hover:border-red-500/30"
+                : "bg-slate-100 hover:bg-red-500/20 text-slate-500 hover:text-red-400 border-slate-200/80 hover:border-red-500/30 shadow-xs"
+            }`}
             aria-label="Close Menu"
           >
             <X size={18} />
@@ -91,10 +95,14 @@ export function Sidebar({ isDark, isOpen, onClose }: SidebarProps) {
               to={item.path}
               onClick={onClose}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                `flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
                   isActive
-                    ? "bg-blue-600 text-white"
-                    : "text-gray-400 hover:bg-gray-800 hover:text-white"
+                    ? isDark
+                      ? "bg-blue-600 text-white shadow-lg shadow-blue-600/25"
+                      : "bg-blue-600 text-white shadow-md shadow-blue-500/20"
+                    : isDark
+                      ? "text-gray-400 hover:bg-gray-800/80 hover:text-white"
+                      : "text-slate-600 hover:bg-slate-100/90 hover:text-blue-600 active:bg-slate-200/70"
                 }`
               }
             >
