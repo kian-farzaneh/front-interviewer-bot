@@ -29,7 +29,7 @@ export default function LandingPage() {
           className={`text-6xl font-bold bg-linear-to-r bg-clip-text text-transparent py-2 ${
             isDark
               ? "from-blue-400 to-purple-400"
-              : "from-blue-800 to-purple-700"
+              : "from-blue-800 to-purple-900"
           }`}
         >
           {t("hero.title")}
