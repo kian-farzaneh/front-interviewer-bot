@@ -1,7 +1,7 @@
 // src/pages/InterviewPage.tsx
 
 import { useState, useEffect, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import type { InterviewConfig, Message, FinalReport } from "../types/interview";
 import { getSystemPrompt, getFinalReportPrompt } from "../utils/prompts";
 import { getSystemPromptFa, getFinalReportPromptFa } from "../utils/prompts.fa";
@@ -10,8 +10,11 @@ import { Button } from "../components/ui/Button";
 import { Send, Loader2 } from "lucide-react";
 
 const faFormatter = new Intl.NumberFormat("fa-IR");
-
+interface InterviewPageProps {
+  isDark?: boolean;
+}
 export default function InterviewPage() {
+  const { isDark } = useOutletContext<InterviewPageProps>();
   const { t, i18n } = useTranslation();
 
   const location = useLocation();
@@ -236,31 +239,57 @@ export default function InterviewPage() {
   );
 
   return (
-    <div className="max-w-4xl mx-auto flex flex-col h-[calc(100vh-120px)] bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden my-4 text-white">
+    <div
+      className={`max-w-4xl mx-auto flex flex-col h-[calc(100vh-120px)] rounded-2xl overflow-hidden my-4 border transition-colors ${
+        isDark
+          ? "bg-gray-900 border-gray-800 text-white"
+          : "bg-white/65 backdrop-blur-xl border-slate-200/90 shadow-xl shadow-slate-200/60 text-slate-900"
+      }`}
+    >
       {/* Header Info */}
-      <div className="p-4 border-b border-gray-800 bg-gray-950/60 flex justify-between items-center text-sm">
+      <div
+        className={`p-4 border-b flex justify-between items-center text-sm transition-colors ${
+          isDark
+            ? "border-gray-800 bg-gray-950/60"
+            : "border-slate-100 bg-slate-50/80"
+        }`}
+      >
         <div className="flex gap-6 items-center">
           <div>
-            <span className="text-gray-400">
+            <span className={isDark ? "text-gray-400" : "text-slate-500"}>
               {t("interview.questionLabel", { defaultValue: "Question:" })}{" "}
             </span>
-            <span dir="ltr" className="font-semibold text-white">
+            <span
+              dir="ltr"
+              className={`font-semibold ${
+                isDark ? "text-white" : "text-slate-600"
+              }`}
+            >
               {formatNumber(currentQuestionIndex)} /{" "}
               {formatNumber(config.questionCount)}
             </span>
           </div>
           <div>
-            <span className="text-gray-400">
+            <span className={isDark ? "text-gray-400" : "text-slate-500"}>
               {t("interview.avgScoreLabel", {
                 defaultValue: "Avg Score:",
               })}{" "}
             </span>
-            <span dir="ltr" className="font-semibold text-blue-400">
+            <span
+              dir="ltr"
+              className={`font-semibold ${
+                isDark ? "text-blue-400" : "text-blue-600"
+              }`}
+            >
               {formatNumber(currentAverageScore)} / {formatNumber(10)}
             </span>
           </div>
         </div>
-        <div className="w-1/3 bg-gray-800 h-2.5 rounded-full overflow-hidden">
+        <div
+          className={`w-1/3 h-2.5 rounded-full overflow-hidden ${
+            isDark ? "bg-gray-800" : "bg-slate-300"
+          }`}
+        >
           <div
             className="bg-linear-to-r from-blue-500 to-purple-500 h-full transition-all duration-300"
             style={{ width: `${progressPercent}%` }}
@@ -287,11 +316,17 @@ export default function InterviewPage() {
                 className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap ${
                   msg.role === "user"
                     ? "bg-blue-600 text-white rounded-br-none shadow-md"
-                    : "bg-gray-800 text-gray-200 border border-gray-700/80 rounded-bl-none"
+                    : isDark
+                      ? "bg-gray-800 text-gray-200 border border-gray-700/80 rounded-bl-none"
+                      : "bg-slate-100 text-slate-800 border border-slate-200/80 rounded-bl-none shadow-xs"
                 }`}
               >
                 {msg.content || (
-                  <div className="flex items-center gap-2 text-gray-400">
+                  <div
+                    className={`flex items-center gap-2 ${
+                      isDark ? "text-gray-400" : "text-slate-500"
+                    }`}
+                  >
                     <Loader2 className="animate-spin w-4 h-4" />
                     <span>{t("interview.aiTyping")}</span>
                   </div>
@@ -305,7 +340,11 @@ export default function InterviewPage() {
       {/* Input Field */}
       <div
         dir="ltr"
-        className="p-4 border-t border-gray-800 bg-gray-950/60 flex gap-3"
+        className={`p-4 border-t flex gap-3 transition-colors ${
+          isDark
+            ? "border-gray-800 bg-gray-950/60"
+            : "border-slate-100 bg-slate-50/80"
+        }`}
       >
         <textarea
           ref={textareaRef}
@@ -316,7 +355,11 @@ export default function InterviewPage() {
           onKeyDown={handleKeyDown}
           placeholder={t("interview.inputPlaceholder")}
           disabled={isLoading}
-          className="overflow-y-auto flex-1 max-h-36 min-h-11 bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-blue-500 text-sm disabled:opacity-50 resize-none"
+          className={`overflow-y-auto flex-1 max-h-36 min-h-11 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500 disabled:opacity-50 resize-none transition-colors border ${
+            isDark
+              ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500"
+              : "bg-gray-300 border-slate-200 text-slate-900 placeholder-slate-400 shadow-xs focus:bg-white"
+          }`}
         />
         <Button
           onClick={handleSend}
