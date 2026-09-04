@@ -8,6 +8,7 @@ import { MainLayout } from "./components/layout/MainLayout";
 import InterviewPage from "./pages/InterviewPage";
 import ResultPage from "./pages/ResultPage";
 import { useLanguageDirection } from "./hooks/useLanguageDirection";
+import HistoryPage from "./pages/HistoryPage";
 // import InterviewSession from './pages/InterviewSession';
 // import InterviewResult from './pages/InterviewResult';
 // import HistoryPage from './pages/HistoryPage';
@@ -26,7 +27,7 @@ function App() {
           <Route path="/result" element={<ResultPage />} />
           {/* <Route path="/session" element={<InterviewSession />} /> */}
           {/* <Route path="/result" element={<InterviewResult />} /> */}
-          {/* <Route path="/history" element={<HistoryPage />} /> */}
+          <Route path="/history" element={<HistoryPage />} />
           {/* <Route path="/profile" element={<ProfilePage />} /> */}
           {/* <Route path="/settings" element={<SettingsPage />} /> */}
         </Route>

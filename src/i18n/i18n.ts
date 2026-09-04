@@ -78,6 +78,23 @@ const resources = {
         skillBreakdown: "Dynamic Skill Breakdown",
         startAnother: "Start Another Interview",
       },
+      history: {
+        title: "Interview History",
+        subtitle: "Review and analyze your past mock interview sessions",
+        clearAll: "Clear All History",
+        confirmClear: "Are you sure you want to clear all history?",
+        emptyTitle: "No interview history yet",
+        emptyDesc:
+          "Complete your first AI mock interview to track progress here.",
+        startFirst: "Start Your First Interview",
+        viewReport: "View Report",
+        deleteItem: "Delete",
+        stats: {
+          total: "Total Interviews",
+          avgScore: "Average Score",
+          bestScore: "Best Score",
+        },
+      },
     },
   },
   fa: {
@@ -153,6 +170,23 @@ const resources = {
         weaknesses: "نقاط قابل بهبود",
         skillBreakdown: "تحلیل مهارتی",
         startAnother: "شروع یک مصاحبه دیگر",
+      },
+      history: {
+        title: "تاریخچه مصاحبه‌ها",
+        subtitle: "مرور و تحلیل نتایج جلسات تمرینی گذشته",
+        clearAll: "پاکسازی کل تاریخچه",
+        confirmClear: "آیا از پاک کردن تمام تاریخچه مطمئن هستید؟",
+        emptyTitle: "هنوز هیچ مصاحبه‌ای ثبت نشده است",
+        emptyDesc:
+          "اولین مصاحبه تمرینی خود را انجام دهید تا گزارش پیشرفت را در اینجا مشاهده کنید.",
+        startFirst: "شروع اولین مصاحبه",
+        viewReport: "مشاهده کارنامه",
+        deleteItem: "حذف",
+        stats: {
+          total: "تعداد مصاحبه‌ها",
+          avgScore: "میانگین نمرات",
+          bestScore: "بهترین نمره",
+        },
       },
     },
   },

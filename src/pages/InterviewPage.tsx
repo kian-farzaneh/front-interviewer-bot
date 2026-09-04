@@ -213,7 +213,28 @@ export default function InterviewPage() {
 
       const cleanJson = rawContent.replace(/```json|```/g, "").trim();
       const parsedReport: FinalReport = JSON.parse(cleanJson);
-
+      // ====================================================================
+      // >>>>> بخش جدید: ذخیره نتیجه مصاحبه در تاریخچه (LocalStorage) <<<<<
+      // ====================================================================
+      try {
+        const historyData = localStorage.getItem("interview_history");
+        const historyList = historyData ? JSON.parse(historyData) : [];
+        const newHistoryItem = {
+          id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
+          timestamp: Date.now(),
+          config,
+          report: parsedReport,
+        };
+        localStorage.setItem(
+          "interview_history",
+          JSON.stringify([newHistoryItem, ...historyList]),
+        );
+      } catch (storageErr) {
+        console.error("Failed to save history:", storageErr);
+      }
+      // ====================================================================
+      // >>>>> پایان بخش جدید <<<<<
+      // ====================================================================
       navigate("/result", { state: parsedReport });
     } catch (error) {
       console.error("Error generating final report:", error);

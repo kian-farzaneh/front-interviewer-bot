@@ -1,6 +1,6 @@
 // src/types/interview.ts
 
-export type Level = 'junior' | 'mid-level' | 'senior';
+export type Level = "junior" | "mid-level" | "senior";
 
 export type FocusArea = string;
 
@@ -11,14 +11,21 @@ export interface InterviewConfig {
 }
 
 export interface Message {
-  role: 'user' | 'assistant' | 'system';
+  role: "user" | "assistant" | "system";
   content: string;
 }
 
 export interface FinalReport {
-  overallScore: string; 
+  overallScore: string;
   strengths: string[];
   weaknesses: string[];
-  skillBreakdown: Record<string, number>; 
+  skillBreakdown: Record<string, number>;
   summary: string;
+}
+
+export interface HistoryItem {
+  id: string;
+  timestamp: number;
+  config: InterviewConfig;
+  report: FinalReport;
 }
